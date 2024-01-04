@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h5 {
+            color: #007bff;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <h5>BMI Stands for Body Mass Index</h5>
+        <form>
+            <div class="mb-3">
+                <label for="height" class="form-label">Height in Centimeter</label>
+                <input type="text" class="form-control" name="height" id="height" required>
+            </div>
+            <div class="mb-3">
+                <label for="weight" class="form-label">Weight in Kilograms</label>
+                <input type="text" class="form-control" id="weight" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            <div id="result" class="mt-4"></div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script>
+        var form = document.querySelector('form');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let height = parseInt(document.querySelector('#height').value);
+            let weight = parseInt(document.querySelector('#weight').value);
+            let result = document.querySelector('#result');
+
+            if (height === '' || height < 0 || isNaN(height)) {
+                result.innerHTML = `<div class="alert alert-danger" role="alert">Please enter valid height ${height}</div>`;
+            } else if (weight === '' || weight < 0 || isNaN(weight)) {
+                result.innerHTML = `<div class="alert alert-danger" role="alert">Please enter valid weight ${weight}</div>`;
+            } else {
+                let BMI = (weight / ((height / 100) * (height / 100))).toFixed(2);
+                result.innerHTML = `<div class="alert alert-success" role="alert">BMI: ${BMI}</div>`;
+                console.log(BMI);
+            }
+        });
+    </script>
+</body>
+
+</html>
